@@ -19,6 +19,7 @@ nano - CLI text editor (CTRL+X and then CTRL+Y and then ENTER to exit)
 ssh - connect to another computer's command line
 make - runs the Makefile in the directory, allowing for easier scripting of
 	code compilation.
+tr - replaces or removes characters from input
 
 | - (pipe) take one command's CLI output and "pipe" it to another command 
 	to be used as input.

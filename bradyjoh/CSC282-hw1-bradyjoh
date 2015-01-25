@@ -1,0 +1,27 @@
+Given a DOS-formatted text file (lines end with \r\n rather than just \n), convert it to a standard text file.
+Found here: http://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/
+Use the tr (translate characters) command with the -d flag to delete instances of /r
+tr -d '\r' < infile > outfile
+
+Given a standard text file, convert all uppercase letters to lowercase.
+syntax found in the man tr(1) example.
+tr "[:upper:]" "[:lower:]" < infile
+
+Given a standard text file, remove all blank spaces at the end of lines.
+use a regular expression to remove it, run by sed (stream editor)
+sed -e 's/ *$//' input > input.tmp && mv input.tmp input
+Sed syntax to update a file: http://stackoverflow.com/questions/5171901/sed-command-find-and-replace-in-file-and-overwrite-file-doesnt-work-it-empties
+Regex to find trailing whitespace: http://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-bash-variable
+
+
+Make a list of all misspelled words in a text file.
+
+Given a CSV file in which each line has the form
+LastName,FirstName,Assignment,NumericGrade 
+find the the five highest grades on homework 2.
+
+Given an HTML file, find the URLs of all images. In case you don't know HTML, those will typically look like 
+<img ... src="*URL*" ...>
+The img can have any capitalization (img, IMG, Img, iMg, etc.)
+There can be other text between the img and the src. (That text cannot include a greater than sign.)
+You may find it easier to start this problem by assuming that there's only one image tag on a line.
