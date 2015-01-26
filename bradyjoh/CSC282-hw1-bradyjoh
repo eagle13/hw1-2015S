@@ -1,6 +1,8 @@
-Given a DOS-formatted text file (lines end with \r\n rather than just \n), convert it to a standard text file.
-Found here: http://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/
-Use the tr (translate characters) command with the -d flag to delete instances of /r
+Given a DOS-formatted text file (lines end with \r\n rather than just \n), 
+convert it to a standard text file.
+Found here: http://www.cyberciti.biz/faq/
+	howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/
+Use tr (translate characters) tool with the -d flag to delete instances of /r
 tr -d '\r' < infile > outfile
 
 Given a standard text file, convert all uppercase letters to lowercase.
@@ -10,18 +12,44 @@ tr "[:upper:]" "[:lower:]" < infile
 Given a standard text file, remove all blank spaces at the end of lines.
 use a regular expression to remove it, run by sed (stream editor)
 sed -e 's/ *$//' input > input.tmp && mv input.tmp input
-Sed syntax to update a file: http://stackoverflow.com/questions/5171901/sed-command-find-and-replace-in-file-and-overwrite-file-doesnt-work-it-empties
-Regex to find trailing whitespace: http://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-bash-variable
+Sed syntax to update a file: http://stackoverflow.com/questions/5171901/
+  sed-command-find-and-replace-in-file-and-overwrite-file-doesnt-work-it-empties
+Regex to find trailing whitespace: http://stackoverflow.com/questions/369758/
+	how-to-trim-whitespace-from-bash-variable
 
 
 Make a list of all misspelled words in a text file.
+Install aspell package and aspell-en dictionary. Varies by operating system. 
+For Ubuntu/Debian, sudo apt-get install aspell aspell-en
+For OS X, use Homebrew Package Installer. Then brew install aspell --lang=en
+aspell list will list the misspelled words. Then pass it a file:
+aspell list input
+Source: http://stackoverflow.com/questions/12799741/
+run-spell-check-on-multiple-files-and-display-any-incorrect-words-in-shell-scrip
+
 
 Given a CSV file in which each line has the form
 LastName,FirstName,Assignment,NumericGrade 
 find the the five highest grades on homework 2.
+First parse the CSV file, getting the columns we want (assignment and grade) 
+	into an array.
+http://stackoverflow.com/questions/17849394/parsing-csv-file-in-bash-script
+array=($(cut -d ',' -f 3,4 input.csv) )
+Then iterate through the array, and if an entry contains "homework 2" then we 
+have a grade that we want to compare. Iterate through a second array of 5 
+elements (initialized to 0) and replace the smallest value. 
+Once done with the first array, print the second array. 
 
-Given an HTML file, find the URLs of all images. In case you don't know HTML, those will typically look like 
+
+Given an HTML file, find the URLs of all images. In case you don't know HTML, 
+those will typically look like 
 <img ... src="*URL*" ...>
 The img can have any capitalization (img, IMG, Img, iMg, etc.)
-There can be other text between the img and the src. (That text cannot include a greater than sign.)
-You may find it easier to start this problem by assuming that there's only one image tag on a line.
+There can be other text between the img and the src. 
+You may find it easier to start this problem by assuming that there's only one 
+image tag on a line.
+My approach: Use a regex to find the beginning of an image tag "<img" up to 
+the end of the image tag ">" and then take that string output to another regex 
+that returns whatever comes between src="  and """. If src=" doesn't appear 
+anywhere apart from the image tags, I'd skip the first step and just do the 
+src=" search. 
