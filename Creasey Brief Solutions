@@ -1,0 +1,50 @@
+282 Day1 HW
+W. Blake Creasey
+1/29/15
+
+
+1. Given a DOS-formatted text file (lines end with \r\n rather than just \n), convert it to a standard text file.
+
+There are a bunch of solutions for this here: http://manpages.ubuntu.com/manpages/maverick/man1/dos2unix.1.html.
+Each solution gets the job done but with a slight twist or variation in each method. Unix
+
+
+2. Given a standard text file, convert all uppercase letters to lowercase.
+Solution: http://linuxcommando.blogspot.com/2008/05/how-to-convert-text-files-to-all-upper.html
+Two Sample solutions for to lower-case: 
+$ dd if=input.txt of=output.txt conv=lcase
+$ perl -pe '$_= lc($_)' input.txt > output.txt
+
+To All Upper: 
+perl
+$ perl -pe '$_= uc($_)' input.txt > output.txt
+
+
+3. Given a standard text file, remove all blank spaces at the end of lines.
+
+Solution found here: http://www.unixguide.net/unix/sedoneliner.shtml
+
+# delete trailing whitespace (spaces, tabs) from end of each line 
+sed 's/[ \t]*$//' # see note on '\t' at end of file
+
+
+4. Make a list of all misspelled words in a text file.
+Solution from: http://www.westwind.com/reference/os-x/commandline/pipes.html
+This command will list the misspelled words: 
+tr 'A-Z' 'a-z' <fnord.txt | tr -cs 'a-z' '\n' | sort | uniq | comm -23 - /usr/share/dict/words
+
+
+
+
+5. Given a CSV file in which each line has the form
+LastName,FirstName,Assignment,NumericGrade 
+find the the five highest grades on homework 2.
+
+My thought for this is to somehow select the “homework 2” column, then sort the scores and return the top 5 scores. Simple to say, though I have no idea how it would be done. I need to sleep. 
+
+
+6. Given an HTML file, find the URLs of all images. In case you don't know HTML, those will typically look like 
+<img ... src="*URL*" ...>
+The img can have any capitalization (img, IMG, Img, iMg, etc.)
+There can be other text between the img and the src. (That text cannot include a greater than sign.)
+You may find it easier to start this problem by assuming that there's only one image tag on a line.
