@@ -1,0 +1,46 @@
+Wesley Pollock and Vasilisa Bashlovkina
+
+1. Given a DOS-formatted text file (lines end with \r\n rather than just
+\n), convert it to a standard text file.
+
+dos2unix works if it is installed.
+
+Otherwise:
+
+Found info from:
+sed and tr man page as well as:
+http://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe
+
+tr -d '\r' < infile > outfile
+sed 's/\r//g' infile > outfile
+
+2. Given a standard text file, convert all uppercase letters to lowercase.
+
+Found info from:
+tr man page:
+
+tr [:upper:] [:lower:] < infile > outfile
+
+3. Given a standard text file, remove all blank spaces at the end of lines.
+
+Found info from:
+The sed man page and:
+http://www.unix.com/shell-programming-and-scripting/23602-how-remove-plank-spaces-end-lines.html
+
+sed 's/\s+$//g' infile > outfile
+
+4. Make a list of all misspelled words in a text file.
+
+Found info from:
+aspell man page
+
+cat infile | aspell list
+
+5. Given a CSV file in which each line has the form
+   LastName,FirstName,Assignment,NumericGrade
+   find the the five highest grades on homework 2.
+
+Found info from:
+gawk, sort, and head man page
+
+gawk -F ',' '{ if ($3 == 2) print $4}' | sort -nr | head -n5
