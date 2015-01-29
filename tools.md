@@ -66,8 +66,10 @@ Filesystem Traversal:
 * man <utility> - look up usage information and similar commands. Use a 
 	number as a flag right after "man" to look up information for different 
 	commands named the same thing.
+* lynx - text-based web browser
 * nano - CLI text editor (CTRL+X and then CTRL+Y and then ENTER to exit)
 * ssh - connect to another computer's command line
+* sshfs - locally mount a directory from a remote file system
 * write <username> - once you ssh into a computer someone is using, you can
 	use write to communicate with them in terminal
 * who - lists all users logged in on this machine
