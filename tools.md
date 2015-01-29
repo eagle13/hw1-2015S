@@ -16,10 +16,9 @@ single-character changes or deletions (for every character in a set).
 * `tr -d string1` - Deletes every character in `string1` from stdin
 * `tr 'a' 'A'`
 
-### `sed' - stream editor for filtering and transforming strings of text (man)
-            -      --
+### `sed` - stream editor for filtering and transforming strings of text (man)
 
-* `sed 's/regex/replacement/g' infile > outfile` - replace all instances of
+* `sed` 's/regex/replacement/g' infile > outfile` - replace all instances of
   matching regex with replacement, read from infile and written to outfile
  
 Scripting Languages
