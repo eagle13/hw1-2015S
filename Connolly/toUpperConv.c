@@ -3,7 +3,9 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+//Can't get it to work. Won't recognize .txt files even though the documentation says it should.
 
+// Definitely spent more than an hour on my work, oh well.
 int main(int argc, char * argv[])
 {
   //REMEMBER TO USE "man" COMMAND TO SHOW THE LIBRARY IN TERMINAL!!!
