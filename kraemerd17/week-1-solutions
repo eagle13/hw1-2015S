@@ -1,0 +1,57 @@
+Week 1 Solutions
+David Kraemer
+
+1.  Given a DOS-formatted text file (lines end with \r\n rather than just \n), convert it
+    to a standard text file.
+
+    From the Wikipedia article on "tr (Unix)" [http://en.wikipedia.org/wiki/Tr_%28Unix%29]:
+    "The d flag causes tr to delete all tokens of the specified set of characters from its
+    input. In this case, only a single character set argument is used. The following command
+    removes carriage return characters."
+
+    tr -d '\r' < input file > output file
+
+2.  Given a standard text file, remove all blank spaces at the end of lines.
+
+    I found the idea for this solution on the Wikipedia on "tr (Unix)" again:
+
+    tr 'A-Z' 'a-z' < input file > output file
+
+3.  Given a standard text file, remove all blank spaces at the end of lines.
+
+    I found this bit of regex (disclaimer, I am not great with regex) on a Stack Overflow
+    post found at
+    [http://stackoverflow.com/questions/14570489/how-to-remove-blank-lines-from-a-unix-file]:
+
+    sed -i '/^[[:space:]]*$/d;s/[[:space:]]*$//' file
+
+4.  Make a list of all misspelled words in a text file.
+
+    I found the spell tool on [http://www.linfo.org/spell.html].
+
+    spell file-to-check > file-to-store
+
+5.  Given a CSV file in which each line has the form
+        LastName,FirstName,Assignment,NumericGrade
+    find the the five highest grades on homework 2.
+    
+    // Haven't solved this one yet.
+
+6.  Given an HTML file, find the URLs of all images. In case you don't know HTML, those
+    will typically look like
+        <img ... src="*URL*" ...>
+
+    I knew a bit about Python's BeautifulSoup tool, but I also checked the documentations
+    at [http://www.crummy.com/software/BeautifulSoup/bs4/doc]. Here is my script:
+
+    # this script runs by including a variable number of html
+    # files as command line arguments. it will then print out
+    # all of the image urls it finds in each of the files.
+
+    import sys
+    if len(sys.argv) > 1:
+        from bs4 import BeautifulSoup
+        for html_file in sys.argv[1:]:
+        soup = BeautifulSoup(open(html_file))
+            for link in soup.find_all('img'):
+            print (link.get('src'))
